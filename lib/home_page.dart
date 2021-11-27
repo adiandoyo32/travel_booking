@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
         preferredSize: Size.fromHeight(88),
         child: HomeAppBar(),
       ),
+      bottomNavigationBar: MainNavigation(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -77,6 +78,57 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class MainNavigation extends StatefulWidget {
+  const MainNavigation({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _MainNavigationState createState() => _MainNavigationState();
+}
+
+class _MainNavigationState extends State<MainNavigation> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      iconSize: 28,
+      selectedItemColor: Colors.teal,
+      unselectedItemColor: Colors.grey[400],
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_filled),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map_outlined),
+          label: 'Map',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark_outline_rounded),
+          label: 'Bookmark',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline_rounded),
+          label: 'Profile',
+        ),
+      ],
     );
   }
 }

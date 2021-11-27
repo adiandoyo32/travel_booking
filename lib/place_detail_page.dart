@@ -36,6 +36,48 @@ class PlaceDetailPage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: PlaceDetail(place: place),
               ),
+            ),
+            SafeArea(
+              child: Positioned(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: Colors.teal,
+                          size: 16,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          elevation: 0,
+                          padding: EdgeInsets.all(14),
+                          primary: Colors.white,
+                          onPrimary: Colors.white,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.bookmark_outline_rounded,
+                          color: Colors.teal,
+                          size: 16,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          elevation: 0,
+                          padding: EdgeInsets.all(14),
+                          primary: Colors.white,
+                          onPrimary: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             )
           ],
         ),
