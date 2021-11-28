@@ -43,7 +43,7 @@ class _PlaceTabState extends State<PlaceTab>
         isScrollable: true,
         indicatorColor: Colors.transparent,
         unselectedLabelColor: Colors.grey[500],
-        labelColor: Colors.teal,
+        labelColor: Theme.of(context).primaryColor,
         tabs: _tabs,
       ),
     );

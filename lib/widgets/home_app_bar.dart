@@ -8,7 +8,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       elevation: 0,
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(0),
@@ -16,17 +16,21 @@ class HomeAppBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
           child: Row(
             children: [
-              Icon(Icons.location_pin),
-              SizedBox(width: 8.0),
+              Icon(Icons.location_pin, color: Theme.of(context).primaryColor),
+              const SizedBox(width: 8.0),
               Text(
                 'Los Angeles, CA',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                ),
               ),
-              Spacer(),
+              const Spacer(),
               CircleAvatar(
                 radius: 24.0,
                 backgroundImage: NetworkImage(
-                    'https://avatars0.githubusercontent.com/u/9064066?v=4&s=460'),
+                    'https://avatars.githubusercontent.com/u/3346368?v=4'),
                 backgroundColor: Colors.transparent,
               )
             ],

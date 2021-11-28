@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'models/place.dart';
 
@@ -17,8 +18,8 @@ class PlaceDetailPage extends StatelessWidget {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.light,
         ),
         child: Stack(
           children: [
@@ -37,8 +38,12 @@ class PlaceDetailPage extends StatelessWidget {
                 child: PlaceDetail(place: place),
               ),
             ),
-            SafeArea(
-              child: Positioned(
+            Positioned(
+              top: 24,
+              left: 0,
+              right: 0,
+              child: FadeInUp(
+                duration: Duration(milliseconds: 400),
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Row(
@@ -48,7 +53,7 @@ class PlaceDetailPage extends StatelessWidget {
                         onPressed: () => Navigator.of(context).pop(),
                         child: Icon(
                           Icons.arrow_back_ios_new_rounded,
-                          color: Colors.teal,
+                          color: Theme.of(context).primaryColor,
                           size: 16,
                         ),
                         style: ElevatedButton.styleFrom(
@@ -63,7 +68,7 @@ class PlaceDetailPage extends StatelessWidget {
                         onPressed: () {},
                         child: Icon(
                           Icons.bookmark_outline_rounded,
-                          color: Colors.teal,
+                          color: Theme.of(context).primaryColor,
                           size: 16,
                         ),
                         style: ElevatedButton.styleFrom(
@@ -105,17 +110,19 @@ class PlaceDetail extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
             child: Container(
-              color: Colors.teal.withOpacity(0.5),
-              height: MediaQuery.of(context).size.height * 0.46,
+              color: Theme.of(context).primaryColor.withOpacity(0.6),
+              height: MediaQuery.of(context).size.height * 0.47,
               child: Padding(
-                padding: const EdgeInsets.all(24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.location_pin, color: Colors.white),
-                        SizedBox(width: 8),
+                        SvgPicture.asset('assets/icons/location-pin.svg',
+                            color: Colors.white),
+                        const SizedBox(width: 8),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -127,6 +134,7 @@ class PlaceDetail extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
+                            const SizedBox(height: 4),
                             Text.rich(
                               TextSpan(
                                 style: TextStyle(color: Colors.white),
@@ -166,17 +174,19 @@ class PlaceDetail extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                        Icon(Icons.thermostat_rounded, color: Colors.white),
+                        SvgPicture.asset('assets/icons/thermometer.svg',
+                            color: Colors.white),
                         SizedBox(width: 4),
                         Text(
-                          '22 C',
+                          '22°C',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
                           ),
                         ),
                         Spacer(),
-                        Icon(Icons.calendar_today_rounded, color: Colors.white),
+                        SvgPicture.asset('assets/icons/calender.svg',
+                            color: Colors.white),
                         SizedBox(width: 4),
                         Text(
                           '7 Days',
@@ -193,6 +203,7 @@ class PlaceDetail extends StatelessWidget {
                     Expanded(
                       child: Text(
                         '${place.description}',
+                        softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 6,
                         textAlign: TextAlign.justify,
@@ -205,7 +216,8 @@ class PlaceDetail extends StatelessWidget {
                         onPressed: () {},
                         child: Text(
                           'Book Now',
-                          style: TextStyle(color: Colors.teal),
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
                         ),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,

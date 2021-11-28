@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:travel_booking/models/place.dart';
 import 'package:travel_booking/widgets/place_tab.dart';
 
@@ -12,70 +13,81 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(88),
-        child: HomeAppBar(),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
       ),
-      bottomNavigationBar: MainNavigation(),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Discover \nNew Destination',
-                    style: Theme.of(context).textTheme.headline5,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(88),
+          child: HomeAppBar(),
+        ),
+        bottomNavigationBar: MainNavigation(),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Text(
+                  'Discover \nNew Destination',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
                   ),
-                  SizedBox(height: 16),
-                  SearchFilterPlace(),
-                ],
+                ),
               ),
-            ),
-            SizedBox(height: 8),
-            PlaceTab(),
-            Container(
-              height: 280,
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                itemCount: placeList.length,
-                itemBuilder: (context, index) {
-                  return PlaceCard(place: placeList[index]);
-                },
+              const SizedBox(height: 16),
+              SearchFilterPlace(),
+              const SizedBox(height: 8),
+              PlaceTab(),
+              Container(
+                height: 280,
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: placeList.length,
+                  itemBuilder: (context, index) {
+                    return PlaceCard(place: placeList[index]);
+                  },
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Row(
-                children: [
-                  Text('Popular'),
-                  Icon(Icons.arrow_drop_down),
-                  Spacer(),
-                  Text('View all'),
-                ],
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  children: [
+                    Text(
+                      'Popular',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Icon(Icons.arrow_drop_down),
+                    Spacer(),
+                    Text(
+                      'View all',
+                      style: TextStyle(color: Colors.grey[500]),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                itemCount: popularPlaceList.length,
-                itemBuilder: (context, index) {
-                  return PopularPlaceCard(place: popularPlaceList[index]);
-                },
+              Container(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  itemCount: popularPlaceList.length,
+                  itemBuilder: (context, index) {
+                    return PopularPlaceCard(place: popularPlaceList[index]);
+                  },
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-          ],
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
@@ -103,21 +115,38 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       iconSize: 28,
-      selectedItemColor: Colors.teal,
+      selectedItemColor: Theme.of(context).primaryColor,
       unselectedItemColor: Colors.grey[400],
       showSelectedLabels: false,
       showUnselectedLabels: false,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home_filled),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.map_outlined),
+          icon: Stack(
+            children: [
+              Icon(Icons.map_outlined),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.red[300],
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              )
+            ],
+          ),
           label: 'Map',
         ),
         BottomNavigationBarItem(
