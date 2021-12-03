@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_booking/models/place.dart';
 import 'package:travel_booking/widgets/place_tab.dart';
 
@@ -32,13 +33,13 @@ class HomePage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Text(
-                  'Discover \nNew Destination',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26,
-                  ),
-                ),
+                child: Text('Discover \nNew Destination',
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 26,
+                      ),
+                    )),
               ),
               const SizedBox(height: 16),
               SearchFilterPlace(),
@@ -63,13 +64,15 @@ class HomePage extends StatelessWidget {
                   children: [
                     Text(
                       'Popular',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     Icon(Icons.arrow_drop_down),
                     Spacer(),
                     Text(
                       'View all',
-                      style: TextStyle(color: Colors.grey[500]),
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(color: Colors.grey[500])),
                     ),
                   ],
                 ),

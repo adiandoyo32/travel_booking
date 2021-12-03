@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -8,7 +9,6 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      // backgroundColor: Colors.white,
       elevation: 0,
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(0),
@@ -20,11 +20,12 @@ class HomeAppBar extends StatelessWidget {
               const SizedBox(width: 8.0),
               Text(
                 'Los Angeles, CA',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                ),
+                )),
               ),
               const Spacer(),
               CircleAvatar(

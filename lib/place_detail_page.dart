@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'models/place.dart';
 
@@ -111,7 +112,7 @@ class PlaceDetail extends StatelessWidget {
             filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
             child: Container(
               color: Theme.of(context).primaryColor.withOpacity(0.6),
-              height: MediaQuery.of(context).size.height * 0.47,
+              height: MediaQuery.of(context).size.height * 0.43,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -128,16 +129,17 @@ class PlaceDetail extends StatelessWidget {
                           children: [
                             Text(
                               '${place.name}',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
-                              ),
+                              )),
                             ),
-                            const SizedBox(height: 4),
                             Text.rich(
                               TextSpan(
-                                style: TextStyle(color: Colors.white),
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(color: Colors.white)),
                                 children: [
                                   TextSpan(
                                     text: '${place.location}, ',
@@ -168,38 +170,46 @@ class PlaceDetail extends StatelessWidget {
                         SizedBox(width: 4),
                         Text(
                           '4.5',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
-                          ),
+                          )),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         SvgPicture.asset('assets/icons/thermometer.svg',
                             color: Colors.white),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Text(
                           '22°C',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
-                          ),
+                          )),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         SvgPicture.asset('assets/icons/calender.svg',
                             color: Colors.white),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Text(
                           '7 Days',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
-                          ),
+                          )),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
-                    Text('Description', style: TextStyle(color: Colors.white)),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Description',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
                     Expanded(
                       child: Text(
                         '${place.description}',
@@ -207,17 +217,27 @@ class PlaceDetail extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 6,
                         textAlign: TextAlign.justify,
-                        style: TextStyle(color: Colors.white),
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            height: 1.2,
+                          ),
+                        ),
                       ),
                     ),
+                    // const SizedBox(height: 8),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {},
                         child: Text(
                           'Book Now',
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PlaceTab extends StatefulWidget {
   const PlaceTab({Key? key}) : super(key: key);
@@ -45,6 +46,10 @@ class _PlaceTabState extends State<PlaceTab>
         unselectedLabelColor: Colors.grey[500],
         labelColor: Theme.of(context).primaryColor,
         tabs: _tabs,
+        labelStyle: GoogleFonts.poppins(
+            textStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+        )),
       ),
     );
   }

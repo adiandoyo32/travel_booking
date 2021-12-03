@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_booking/models/place.dart';
 import 'package:travel_booking/place_detail_page.dart';
 
@@ -59,16 +60,17 @@ class PlaceCard extends StatelessWidget {
                   children: [
                     Text(
                       '${place.name}',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                      ),
+                      )),
                     ),
-                    SizedBox(height: 4),
                     Text.rich(
                       TextSpan(
-                        style: TextStyle(color: Colors.white),
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(color: Colors.white)),
                         children: [
                           TextSpan(
                             text: '${place.location}, ',
